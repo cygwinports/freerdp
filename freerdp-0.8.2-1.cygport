@@ -1,0 +1,21 @@
+DESCRIPTION="Remote Desktop Protocol client"
+HOMEPAGE="http://www.freerdp.com/"
+SRC_URI="mirror://sourceforge/freerdp/${P}.tar.gz"
+
+PATCH_URI="
+	0.8.2-cygwin.patch
+	0.8.2-no-undefined.patch
+	0.8.2-plugin-features.patch
+"
+
+PKG_NAMES="${PN} lib${PN}0 lib${PN}-devel"
+freerdp_CONTENTS="usr/bin/xfreerdp.exe usr/share/doc/ usr/share/man/"
+libfreerdp0_CONTENTS="usr/bin/*-0.dll usr/lib/${PN}/ usr/share/${PN}/"
+libfreerdp_devel_CONTENTS="usr/include/ usr/lib/lib* usr/lib/pkgconfig/"
+
+DIFF_EXCLUDES=".version"
+
+# printer requires CUPS
+# sound requires ALSA
+CYGCONF_ARGS="--disable-static --without-printer --without-sound"
+MAKEOPTS+=" CPPFLAGS=-I\$(top_srcdir)"

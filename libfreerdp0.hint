@@ -1,0 +1,10 @@
+category: Net
+requires: libgcc1 libiconv2 libopenssl098 libX11_6
+external-source: freerdp
+sdesc: "Remote Desktop Protocol library (runtime)"
+ldesc: "FreeRDP is a successor to rdesktop, a longtime-favored 
+application for use on *nix systems to access Windows servers and 
+workstations. The goal of FreeRDP is twofold: a more complete support of 
+keyboard layouts; and support of newer Remote Desktop Protocol (RDP) 
+features found in the Windows 6.0 (Vista/2008) & 6.1 (7/2008R2) 
+environments."
