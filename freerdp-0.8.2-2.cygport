@@ -19,3 +19,4 @@ DIFF_EXCLUDES=".version"
 # sound requires ALSA
 CYGCONF_ARGS="--disable-static --without-printer --without-sound"
 MAKEOPTS+=" CPPFLAGS=-I\$(top_srcdir)"
+KEEP_LA_FILES="none"

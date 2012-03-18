@@ -1,5 +1,5 @@
 category: Net
-requires: libgcc1 libiconv2 libopenssl098 libX11_6
+requires: libgcc1 libiconv2 libopenssl100 libX11_6
 external-source: freerdp
 sdesc: "Remote Desktop Protocol library (runtime)"
 ldesc: "FreeRDP is a successor to rdesktop, a longtime-favored 
