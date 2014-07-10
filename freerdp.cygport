@@ -1,0 +1,30 @@
+NAME="freerdp"
+VERSION=0.8.2
+RELEASE=2
+CATEGORY="Net"
+SUMMARY="Remote Desktop Protocol client"
+DESCRIPTION="FreeRDP is a successor to rdesktop, a longtime-favored application
+for use on *nix systems to access Windows servers and workstations. The goal of
+FreeRDP is twofold: a more complete support of keyboard layouts; and support of
+newer Remote Desktop Protocol (RDP) features found in the Windows 6.0
+(Vista/2008) and newer environments."
+HOMEPAGE="http://www.freerdp.com/"
+SRC_URI="mirror://sourceforge/freerdp/freerdp-${VERSION}.tar.gz"
+PATCH_URI="
+	0.8.2-cygwin.patch
+	0.8.2-no-undefined.patch
+	0.8.2-plugin-features.patch
+"
+
+PKG_NAMES="${NAME} lib${NAME}0 lib${NAME}-devel"
+freerdp_CONTENTS="usr/bin/xfreerdp.exe usr/share/doc/ usr/share/man/"
+libfreerdp0_CONTENTS="usr/bin/*-0.dll usr/lib/${NAME}/ usr/share/${NAME}/"
+libfreerdp_devel_CONTENTS="usr/include/ usr/lib/lib* usr/lib/pkgconfig/"
+
+DIFF_EXCLUDES=".version"
+
+# printer requires CUPS
+# sound requires ALSA
+CYGCONF_ARGS="--disable-static --without-printer --without-sound"
+MAKEOPTS+=" CPPFLAGS=-I\$(top_srcdir)"
+KEEP_LA_FILES="none"
