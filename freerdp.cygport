@@ -1,6 +1,8 @@
+inherit cmake
+
 NAME="freerdp"
-VERSION=0.8.2
-RELEASE=2
+VERSION=1.0.2
+RELEASE=1
 CATEGORY="Net"
 SUMMARY="Remote Desktop Protocol client"
 DESCRIPTION="FreeRDP is a successor to rdesktop, a longtime-favored application
@@ -9,22 +11,34 @@ FreeRDP is twofold: a more complete support of keyboard layouts; and support of
 newer Remote Desktop Protocol (RDP) features found in the Windows 6.0
 (Vista/2008) and newer environments."
 HOMEPAGE="http://www.freerdp.com/"
-SRC_URI="mirror://sourceforge/freerdp/freerdp-${VERSION}.tar.gz"
+SRC_URI="https://github.com/FreeRDP/FreeRDP/archive/${VERSION}/FreeRDP-${VERSION}.tar.gz"
+SRC_DIR="FreeRDP-${VERSION}"
 PATCH_URI="
-	0.8.2-cygwin.patch
-	0.8.2-no-undefined.patch
-	0.8.2-plugin-features.patch
+	1.0.2-cmake-install.patch
+	1.0.2-cygwin-compile.patch
+	1.0.2-cygwin-plugins.patch
 "
 
-PKG_NAMES="${NAME} lib${NAME}0 lib${NAME}-devel"
+PKG_NAMES="${NAME} lib${NAME}1.0 lib${NAME}-devel"
 freerdp_CONTENTS="usr/bin/xfreerdp.exe usr/share/doc/ usr/share/man/"
-libfreerdp0_CONTENTS="usr/bin/*-0.dll usr/lib/${NAME}/ usr/share/${NAME}/"
-libfreerdp_devel_CONTENTS="usr/include/ usr/lib/lib* usr/lib/pkgconfig/"
+libfreerdp1_0_CONTENTS="usr/bin/cygfreerdp*-1.0.dll usr/lib/freerdp-1.0/*.dll usr/share/freerdp-1.0/"
+libfreerdp_devel_CONTENTS="usr/include/freerdp/ usr/lib/libfreerdp* usr/lib/pkgconfig/freerdp.pc"
+# otherwise, patch all channel CMakeLists.txt to be MODULEs
+PKG_IGNORE="usr/lib/freerdp*/*.dll.a"
 
-DIFF_EXCLUDES=".version"
-
-# printer requires CUPS
-# sound requires ALSA
-CYGCONF_ARGS="--disable-static --without-printer --without-sound"
-MAKEOPTS+=" CPPFLAGS=-I\$(top_srcdir)"
-KEEP_LA_FILES="none"
+CYGCMAKE_ARGS="
+	-DWITH_ALSA=OFF
+	-DWITH_CUNIT=OFF
+	-DWITH_CUPS=OFF
+	-DWITH_DIRECTFB=OFF
+	-DWITH_FFMPEG=OFF
+	-DWITH_PCSC=OFF
+	-DWITH_PULSEAUDIO=ON
+	-DWITH_X11=ON
+	-DWITH_XCURSOR=ON
+	-DWITH_XEXT=ON
+	-DWITH_XKBFILE=ON
+	-DWITH_XINERAMA=ON
+	-DWITH_XV=OFF
+	-DWITH_SSE2=${ARCH_i686+OFF}${ARCH_x86_64+ON}
+"
