@@ -1,0 +1,40 @@
+--- origsrc/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/CMakeLists.txt	2016-12-02 15:54:06.000000000 -0600
++++ src/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/CMakeLists.txt	2017-02-09 21:43:13.619864900 -0600
+@@ -182,14 +182,14 @@ if(CMAKE_COMPILER_IS_GNUCC)
+ 	if(CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64" OR CMAKE_SYSTEM_PROCESSOR MATCHES "i686")
+ 		CHECK_SYMBOL_EXISTS(__x86_64__ "" IS_X86_64)
+ 		if(IS_X86_64)
+-			set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
++			set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${CMAKE_C_COMPILE_OPTIONS_PIC}")
+ 		else()
+ 			set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=i686")
+ 		endif()
+ 	else()
+ 		if(CMAKE_POSITION_INDEPENDENT_CODE)
+ 			if(${CMAKE_VERSION} VERSION_LESS 2.8.9)
+-				set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
++				set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${CMAKE_C_COMPILE_OPTIONS_PIC}")
+ 			endif()
+ 		endif()
+ 	endif()
+--- origsrc/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/channels/drive/client/drive_file.h	2016-12-02 15:54:06.000000000 -0600
++++ src/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/channels/drive/client/drive_file.h	2017-02-09 21:43:44.694798700 -0600
+@@ -61,7 +61,7 @@
+ typedef UINT32 ssize_t;
+ typedef UINT32 mode_t;
+ 
+-#elif defined(__APPLE__) || defined(__FreeBSD__) || defined(__OpenBSD__)
++#elif defined(__APPLE__) || defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__CYGWIN__)
+ #define STAT stat
+ #define OPEN open
+ #define LSEEK lseek
+--- origsrc/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/channels/tsmf/client/gstreamer/tsmf_X11.c	2016-12-02 15:54:06.000000000 -0600
++++ src/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/channels/tsmf/client/gstreamer/tsmf_X11.c	2017-02-09 21:44:08.503292500 -0600
+@@ -21,7 +21,6 @@
+ #include <sys/types.h>
+ #include <sys/mman.h>
+ #include <sys/stat.h>
+-#include <sys/syscall.h>
+ 
+ #include <unistd.h>
+ #include <fcntl.h>
