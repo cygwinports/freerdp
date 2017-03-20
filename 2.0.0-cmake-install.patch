@@ -1,6 +1,6 @@
---- origsrc/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/client/X11/CMakeLists.txt	2016-12-02 15:54:06.000000000 -0600
-+++ src/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/client/X11/CMakeLists.txt	2017-02-09 21:39:00.248884100 -0600
-@@ -217,7 +217,11 @@ if(WITH_IPP)
+--- origsrc/FreeRDP-f77b4a57dcc373e0cad9285800acb905fcbce048/client/X11/CMakeLists.txt	2017-03-03 07:41:11.000000000 -0600
++++ src/FreeRDP-f77b4a57dcc373e0cad9285800acb905fcbce048/client/X11/CMakeLists.txt	2017-03-09 13:14:37.579589000 -0600
+@@ -213,7 +213,11 @@ if(WITH_IPP)
  endif()
  
  if(WITH_CLIENT_INTERFACE)
@@ -13,9 +13,9 @@
  	add_subdirectory(cli)
  else()
  	install(TARGETS ${MODULE_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT client)
---- origsrc/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/client/common/CMakeLists.txt	2016-12-02 15:54:06.000000000 -0600
-+++ src/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/client/common/CMakeLists.txt	2017-02-09 21:40:06.381134800 -0600
-@@ -72,7 +72,11 @@ else()
+--- origsrc/FreeRDP-f77b4a57dcc373e0cad9285800acb905fcbce048/client/common/CMakeLists.txt	2017-03-03 07:41:11.000000000 -0600
++++ src/FreeRDP-f77b4a57dcc373e0cad9285800acb905fcbce048/client/common/CMakeLists.txt	2017-03-09 13:15:04.308048300 -0600
+@@ -73,7 +73,11 @@ else()
  endif()
  
  
@@ -27,10 +27,10 @@
 +	COMPONENT libraries)
  
  if (WITH_DEBUG_SYMBOLS AND MSVC AND BUILD_SHARED_LIBS)
- 	install(FILES ${CMAKE_PDB_BINARY_DIR}/${MODULE_NAME}.pdb DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT symbols)
---- origsrc/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/libfreerdp/CMakeLists.txt	2016-12-02 15:54:06.000000000 -0600
-+++ src/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/libfreerdp/CMakeLists.txt	2017-02-09 21:41:09.623120700 -0600
-@@ -299,7 +299,12 @@ endif()
+ 	get_target_property(OUTPUT_FILENAME ${MODULE_NAME} OUTPUT_NAME)
+--- origsrc/FreeRDP-f77b4a57dcc373e0cad9285800acb905fcbce048/libfreerdp/CMakeLists.txt	2017-03-03 07:41:11.000000000 -0600
++++ src/FreeRDP-f77b4a57dcc373e0cad9285800acb905fcbce048/libfreerdp/CMakeLists.txt	2017-03-09 13:17:40.851075300 -0600
+@@ -298,7 +298,11 @@ endif()
  
  
  target_link_libraries(${MODULE_NAME} ${PRIVATE_KEYWORD} ${LIBFREERDP_LIBS} winpr)
@@ -40,13 +40,12 @@
 +	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 +	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 +	COMPONENT libraries)
-+
  if (WITH_DEBUG_SYMBOLS AND MSVC AND BUILD_SHARED_LIBS)
-     install(FILES ${CMAKE_PDB_BINARY_DIR}/${MODULE_NAME}.pdb DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT symbols)
- endif()
---- origsrc/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/winpr/libwinpr/CMakeLists.txt	2016-12-02 15:54:06.000000000 -0600
-+++ src/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/winpr/libwinpr/CMakeLists.txt	2017-02-09 22:26:14.920512300 -0600
-@@ -130,7 +130,11 @@ target_link_libraries(${MODULE_NAME} ${P
+     get_target_property(OUTPUT_FILENAME ${MODULE_NAME} OUTPUT_NAME)
+     install(FILES ${CMAKE_PDB_BINARY_DIR}/${OUTPUT_FILENAME}.pdb DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT symbols)
+--- origsrc/FreeRDP-f77b4a57dcc373e0cad9285800acb905fcbce048/winpr/libwinpr/CMakeLists.txt	2017-03-03 07:41:11.000000000 -0600
++++ src/FreeRDP-f77b4a57dcc373e0cad9285800acb905fcbce048/winpr/libwinpr/CMakeLists.txt	2017-03-09 13:18:08.076978000 -0600
+@@ -131,7 +131,11 @@ target_link_libraries(${MODULE_NAME} ${P
  else()
  target_link_libraries(${MODULE_NAME} ${PRIVATE_KEYWORD} ${WINPR_LIBS})
  endif(WIN32)
@@ -57,11 +56,11 @@
 +	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 +	COMPONENT libraries)
  if (WITH_DEBUG_SYMBOLS AND MSVC AND BUILD_SHARED_LIBS)
-     install(FILES ${CMAKE_PDB_BINARY_DIR}/${MODULE_NAME}.pdb DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT symbols)
- endif()
---- origsrc/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/winpr/tools/CMakeLists.txt	2016-12-02 15:54:06.000000000 -0600
-+++ src/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/winpr/tools/CMakeLists.txt	2017-02-09 22:47:10.285691600 -0600
-@@ -111,7 +111,11 @@ endif()
+     get_target_property(OUTPUT_FILENAME ${MODULE_NAME} OUTPUT_NAME)
+     install(FILES ${CMAKE_PDB_BINARY_DIR}/${OUTPUT_FILENAME}.pdb DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT symbols)
+--- origsrc/FreeRDP-f77b4a57dcc373e0cad9285800acb905fcbce048/winpr/tools/CMakeLists.txt	2017-03-03 07:41:11.000000000 -0600
++++ src/FreeRDP-f77b4a57dcc373e0cad9285800acb905fcbce048/winpr/tools/CMakeLists.txt	2017-03-09 13:18:32.449216600 -0600
+@@ -112,7 +112,11 @@ endif()
  add_definitions(${WINPR_DEFINITIONS})
  target_link_libraries(${MODULE_NAME} ${PRIVATE_KEYWORD} ${WINPR_TOOLS_LIBS})
  
@@ -72,5 +71,5 @@
 +	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 +	COMPONENT libraries)
  if (WITH_DEBUG_SYMBOLS AND MSVC AND BUILD_SHARED_LIBS)
-     install(FILES ${CMAKE_PDB_BINARY_DIR}/${MODULE_NAME}.pdb DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT symbols)
- endif()
+     get_target_property(OUTPUT_FILENAME ${MODULE_NAME} OUTPUT_NAME)
+     install(FILES ${CMAKE_PDB_BINARY_DIR}/${OUTPUT_FILENAME}.pdb DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT symbols)

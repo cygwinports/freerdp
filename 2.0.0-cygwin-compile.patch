@@ -17,24 +17,3 @@
  			endif()
  		endif()
  	endif()
---- origsrc/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/channels/drive/client/drive_file.h	2016-12-02 15:54:06.000000000 -0600
-+++ src/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/channels/drive/client/drive_file.h	2017-02-09 21:43:44.694798700 -0600
-@@ -61,7 +61,7 @@
- typedef UINT32 ssize_t;
- typedef UINT32 mode_t;
- 
--#elif defined(__APPLE__) || defined(__FreeBSD__) || defined(__OpenBSD__)
-+#elif defined(__APPLE__) || defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__CYGWIN__)
- #define STAT stat
- #define OPEN open
- #define LSEEK lseek
---- origsrc/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/channels/tsmf/client/gstreamer/tsmf_X11.c	2016-12-02 15:54:06.000000000 -0600
-+++ src/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/channels/tsmf/client/gstreamer/tsmf_X11.c	2017-02-09 21:44:08.503292500 -0600
-@@ -21,7 +21,6 @@
- #include <sys/types.h>
- #include <sys/mman.h>
- #include <sys/stat.h>
--#include <sys/syscall.h>
- 
- #include <unistd.h>
- #include <fcntl.h>

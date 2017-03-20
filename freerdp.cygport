@@ -2,7 +2,7 @@ inherit cmake
 
 NAME="freerdp"
 VERSION=2.0.0
-RELEASE=0.1.20161202git
+RELEASE=0.2.20170303git
 CATEGORY="Net"
 SUMMARY="Remote Desktop Protocol client"
 DESCRIPTION="FreeRDP is a successor to rdesktop, a longtime-favored application
@@ -11,7 +11,7 @@ FreeRDP is twofold: a more complete support of keyboard layouts; and support of
 newer Remote Desktop Protocol (RDP) features found in the Windows 6.0
 (Vista/2008) and newer environments."
 HOMEPAGE="http://www.freerdp.com/"
-commit0=d72ff5d241c63822af9f0d6784a060129d9d010d
+commit0=f77b4a57dcc373e0cad9285800acb905fcbce048 # 2.0.0-beta1+android10
 SRC_URI="https://github.com/FreeRDP/FreeRDP/archive/${commit0}/FreeRDP-${commit0}.tar.gz"
 SRC_DIR="FreeRDP-${commit0}"
 PATCH_URI="
@@ -20,38 +20,41 @@ PATCH_URI="
 	2.0.0-cygwin-winpr.patch
 "
 
-PKG_NAMES="${NAME} lib${NAME}2 lib${NAME}-devel libwinpr2 libwinpr-devel"
+PKG_NAMES="${NAME} lib${NAME}2_2 lib${NAME}2-devel libwinpr2_2 libwinpr2-devel"
 freerdp_CONTENTS="
 	usr/bin/xfreerdp.exe
 	usr/share/doc/
 	usr/share/man/man1/xfreerdp.1*
 	usr/share/man/man7/wlog.7*
 "
-libfreerdp2_CONTENTS="
-	usr/bin/cygfreerdp-2.dll
-	usr/bin/cygfreerdp-client-2.dll
+libfreerdp2_2_CONTENTS="
+	usr/bin/cygfreerdp2-2.dll
+	usr/bin/cygfreerdp-client2-2.dll
 "
-libfreerdp_devel_CONTENTS="
+libfreerdp2_devel_OBSOLETES="libfreerdp-devel"
+libfreerdp2_devel_CONTENTS="
 	usr/include/freerdp2/
 	usr/lib/cmake/FreeRDP2/
 	usr/lib/cmake/FreeRDP-Client2/
-	usr/lib/libfreerdp.dll.a
-	usr/lib/libfreerdp-client.dll.a
+	usr/lib/libfreerdp2.dll.a
+	usr/lib/libfreerdp-client2.dll.a
 	usr/lib/pkgconfig/freerdp2.pc
 	usr/lib/pkgconfig/freerdp-client2.pc
 "
-libwinpr2_CONTENTS="
-	usr/bin/cygwinpr-2.dll
-	usr/bin/cygwinpr-tools-2.dll
+libwinpr2_2_CONTENTS="
+	usr/bin/cygwinpr2-2.dll
+	usr/bin/cygwinpr-tools2-2.dll
 "
-libwinpr_devel_CONTENTS="
+libwinpr2_devel_OBSOLETES="libwinpr-devel"
+libwinpr2_devel_CONTENTS="
 	usr/bin/winpr-*
 	usr/include/winpr2/
 	usr/lib/cmake/WinPR2/
-	usr/lib/libwinpr.dll.a
-	usr/lib/libwinpr-tools.dll.a
+	usr/lib/libwinpr2.dll.a
+	usr/lib/libwinpr-tools2.dll.a
 	usr/lib/pkgconfig/winpr2.pc
 	usr/lib/pkgconfig/winpr-tools2.pc
+	usr/share/man/man1/winpr-*
 "
 
 src_compile() {
