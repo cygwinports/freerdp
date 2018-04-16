@@ -2,7 +2,7 @@ inherit cmake
 
 NAME="freerdp"
 VERSION=2.0.0
-RELEASE=0.4.20170724git
+RELEASE=0.6.rc2
 CATEGORY="Net"
 SUMMARY="Remote Desktop Protocol client"
 DESCRIPTION="FreeRDP is a successor to rdesktop, a longtime-favored application
@@ -11,7 +11,7 @@ FreeRDP is twofold: a more complete support of keyboard layouts; and support of
 newer Remote Desktop Protocol (RDP) features found in the Windows 6.0
 (Vista/2008) and newer environments."
 HOMEPAGE="http://www.freerdp.com/"
-commit0=1648deb435ad52206f7aa2afe4b4dff71d9329bc
+commit0=7a7b180277a9c04809bf07a54882d7c33eeeb9f9
 SRC_URI="https://github.com/FreeRDP/FreeRDP/archive/${commit0}/FreeRDP-${commit0}.tar.gz"
 SRC_DIR="FreeRDP-${commit0}"
 PATCH_URI="

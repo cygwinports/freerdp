@@ -52,17 +52,6 @@
  #define WITH_POSIX_TIMER	1
  #endif
  
---- origsrc/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/winpr/libwinpr/synch/timer.c	2016-12-02 15:54:06.000000000 -0600
-+++ src/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/winpr/libwinpr/synch/timer.c	2017-02-09 21:48:25.284002100 -0600
-@@ -106,7 +106,7 @@ BOOL TimerCloseHandle(HANDLE handle) {
-   if (!TimerIsHandled(handle))
-     return FALSE;
- 
--#ifdef __linux__
-+#if defined(__linux__) || defined(__CYGWIN__)
- 
- 	if (timer->fd != -1)
- 		close(timer->fd);
 --- origsrc/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/winpr/libwinpr/sysinfo/sysinfo.c	2016-12-02 15:54:06.000000000 -0600
 +++ src/FreeRDP-d72ff5d241c63822af9f0d6784a060129d9d010d/winpr/libwinpr/sysinfo/sysinfo.c	2017-02-09 21:49:41.685112000 -0600
 @@ -29,7 +29,7 @@
